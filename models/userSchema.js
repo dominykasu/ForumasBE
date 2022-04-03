@@ -9,7 +9,7 @@ const userSchema = new Schema({
     profileImage:{
         type:String,
         required:true,
-        default: 'https://gladstoneentertainment.com/wp-content/uploads/2018/05/avatar-placeholder.gif',
+        default: 'https://cdn-icons-png.flaticon.com/128/149/149071.png',
     },
     password:{
         type:String,

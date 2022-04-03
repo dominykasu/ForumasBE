@@ -96,8 +96,10 @@ module.exports = {
 
 
     },
-    postComment: (req, res) => {
+    postComment: async (req, res) => {
         const data = req.body
+
+
 
         const comment = new commentModel()
 
@@ -113,7 +115,8 @@ module.exports = {
 
             console.log("comment saved")
         })
-        res.send({success: "comment saved"})
+        const updateComments = await commentModel.find({index: data.index}).sort({ _id: -1 });
+        res.send({success: true, allComments:updateComments})
 
 
 

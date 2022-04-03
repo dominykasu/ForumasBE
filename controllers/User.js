@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt")
 const userModel = require("../models/userSchema")
+const commentModel = require("../models/commentSchema");
 
 module.exports = {
     registerUser: (req, res) => {
@@ -61,17 +62,13 @@ module.exports = {
         findUser()
 
     },
-    postTopic: (req, res) => {
+    updatePicture: async (req, res) => {
         const data = req.body
+        await userModel.findOneAndUpdate({email:data.email},{profileImage:data.profileImage}, {new: true})
+        const updatedUser = await userModel.findOne({email:data.email});
+        return res.send({success: true,updatedUser: updatedUser})
 
-
-        console.log(data)
     },
-    postComment: (req, res) => {
-        const data = req.body
 
-
-        console.log(data)
-    },
 
 }
