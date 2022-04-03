@@ -20,7 +20,7 @@ module.exports = {
 
             user.email = data.email
             user.password = hash
-            user.notifications = false
+            user.notifications = true
 
 
             user.save().then(res => {
@@ -60,6 +60,18 @@ module.exports = {
 
         findUser()
 
+    },
+    postTopic: (req, res) => {
+        const data = req.body
 
-    }
+
+        console.log(data)
+    },
+    postComment: (req, res) => {
+        const data = req.body
+
+
+        console.log(data)
+    },
+
 }
