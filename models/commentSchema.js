@@ -11,15 +11,19 @@ const commentSchema = new Schema({
         required:true
     },
     creator:{
-        type:String,
+        type:Object,
         required:true
     },
     date:{
         type:Number,
         required:true
     },
-    index:{
-        type:Number,
+    // index:{
+    //     type:Number,
+    //     required:true
+    // },
+    threadId:{
+        type:String,
         required:true
     }
 

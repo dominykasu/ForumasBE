@@ -52,7 +52,8 @@ module.exports = {
         console.log(data)
 
 
-        const allComments = await commentModel.find({index: data.index}).sort({ _id: -1 });
+        // topicIndex:data.getThreadIndex,
+        const allComments = await commentModel.find({threadId: data.getThreadId}).sort({ _id: -1 });
 
         // console.log(byEmail[0].password)
         // console.log(data.password)
@@ -72,12 +73,12 @@ module.exports = {
 
 
     },
-    postTopic: (req, res) => {
+    postTopic: async (req, res) => {
         const data = req.body
 
         const postTopic = new topicModel()
 
-
+        console.log(data)
 
         postTopic.topic = data.topic
         postTopic.contentText = data.contentText
@@ -86,7 +87,7 @@ module.exports = {
         postTopic.index = data.index
 
 
-        postTopic.save().then(res => {
+       await postTopic.save().then(res => {
 
             console.log("topic saved")
         })
@@ -108,18 +109,30 @@ module.exports = {
         comment.comment = data.comment
         comment.date = data.date
         comment.creator = data.creator
-        comment.index = data.index
+        // comment.index = data.index
+        comment.threadId = data.threadId
 
-
-        comment.save().then(res => {
+        console.log(data)
+       await comment.save().then(res => {
 
             console.log("comment saved")
         })
-        const updateComments = await commentModel.find({index: data.index}).sort({ _id: -1 });
+        const updateComments = await commentModel.find({threadId: data.threadId}).sort({ _id: -1 });
+        console.log(updateComments)
         res.send({success: true, allComments:updateComments})
 
 
 
     },
+    getMyComments: async (req, res) => {
+        const data = req.params
+        console.log(data)
+        const myComments = await commentModel.find({email: data.email}).sort({ _id: -1 });
 
+
+
+        res.send({ success: true, myComments:myComments });
+
+
+    }
 }

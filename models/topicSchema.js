@@ -11,7 +11,7 @@ const topicSchema = new Schema({
         required:true
     },
     creator:{
-        type:String,
+        type:Object,
         required:true
     },
     date:{
