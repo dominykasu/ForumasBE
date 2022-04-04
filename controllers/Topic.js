@@ -117,7 +117,7 @@ module.exports = {
 
             console.log("comment saved")
         })
-        const updateComments = await commentModel.find({threadId: data.threadId}).sort({ _id: -1 });
+        const updateComments = await commentModel.find({threadId: data.threadId});
         console.log(updateComments)
         res.send({success: true, allComments:updateComments})
 
@@ -134,5 +134,16 @@ module.exports = {
         res.send({ success: true, myComments:myComments });
 
 
-    }
+    },
+    getMyTopics: async (req, res) => {
+        const data = req.params
+        console.log(data)
+        const myTopics = await topicModel.find({email: data.email}).sort({ _id: -1 });
+
+
+
+        res.send({ success: true, myTopics:myTopics });
+
+
+    },
 }
