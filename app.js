@@ -1,12 +1,10 @@
 const express = require("express");
 const app = express();
-// const cors = require('cors')
 const mongoose = require("mongoose");
-// const session = require("express-session");
 require("dotenv").config();
 
 
-// app.use(cors())
+
 
 app.use((req, res, next) => {
     // Website you wish to allow to connect
@@ -29,15 +27,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.listen(4000);
-
-// app.use(
-//     session({
-//         secret: process.env.SESSION_KEY,
-//         resave: false,
-//         saveUninitialized: true,
-//         cookie: { secure: false },
-//     })
-// );
 
 mongoose
     .connect(process.env.MONGO_KEY)

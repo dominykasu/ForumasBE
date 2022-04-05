@@ -2,31 +2,27 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const topicSchema = new Schema({
-    // threadId:{
-    //     type:String,
-    //     required:true
-    // },
-    topic:{
-        type:String,
-        required:true
+    notifications: {
+        type: Boolean,
+        required: true,
+        default: false
     },
-    creator:{
-        type:Object,
-        required:true
+    topic: {
+        type: String,
+        required: true
     },
-    date:{
-        type:Number,
-        required:true
+    creator: {
+        type: Object,
+        required: true
     },
-    contentText: {
-        type:String,
-        required:true
+    date: {
+        type: Number,
+        required: true
     },
     index: {
-        type:Number,
-        required:true
+        type: Number,
+        required: true
     }
-
 })
 
 
